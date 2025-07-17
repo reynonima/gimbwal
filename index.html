@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <title>Untuk Salsa 😽</title>
@@ -10,15 +10,20 @@
       background-color: #ffe6f0;
       margin: 0;
       padding: 30px;
+      overflow: hidden;
     }
+
     img {
-      width: 250px;
-      border-radius: 15px;
+      width: 320px;
+      border-radius: 20px;
       margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
+
     h1 {
       color: #d6336c;
     }
+
     .button {
       padding: 12px 24px;
       font-size: 18px;
@@ -27,21 +32,36 @@
       border-radius: 8px;
       cursor: pointer;
     }
+
     .yes {
       background-color: #4CAF50;
       color: white;
     }
+
     .no {
       background-color: #f44336;
       color: white;
       position: absolute;
+    }
+
+    .love {
+      position: fixed;
+      color: pink;
+      font-size: 24px;
+      animation: fall 4s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
   </style>
 </head>
 <body>
 
   <h1>Salsa, kamu suka aku nggak? 😳</h1>
-  <img src="https://placekitten.com/300/300" alt="Kucing lucu">
+  <img src="https://images.unsplash.com/photo-1606214174583-36be1f2f8125?auto=format&fit=crop&w=500&q=80" alt="Kucing lucu banget">
 
   <div>
     <button class="button yes" onclick="jawabYes()">Yaa 😽</button>
@@ -52,7 +72,7 @@
     function jawabYes() {
       document.body.innerHTML = `
         <h1>Yayyy! Aku juga suka kamu Salsa! 💖</h1>
-        <img src="https://placekitten.com/400/400" alt="Kucing senang">
+        <img src="https://images.unsplash.com/photo-1606220481353-5f69b07c1487?auto=format&fit=crop&w=500&q=80" alt="Kucing bahagia">
         <p style="font-size: 20px; color: #ff69b4;">Kita jadi tim kucing bahagia sekarang 😻</p>
       `;
     }
@@ -68,6 +88,17 @@
       btn.style.left = x + "px";
       btn.style.top = y + "px";
     }
+
+    // Animasi love jatuh
+    setInterval(() => {
+      const love = document.createElement("div");
+      love.className = "love";
+      love.style.left = Math.random() * window.innerWidth + "px";
+      love.style.fontSize = (16 + Math.random() * 20) + "px";
+      love.innerText = "❤";
+      document.body.appendChild(love);
+      setTimeout(() => love.remove(), 4000);
+    }, 300);
   </script>
 
 </body>
